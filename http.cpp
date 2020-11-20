@@ -65,8 +65,76 @@ http_request string_to_request(string request_string)
     }
     // if there is data keep it
     i++;
-    if (i == (int)request_by_line.size() - 1 ){
+    if (i == (int)request_by_line.size() - 1)
+    {
         result.entity_body = request_by_line[i];
+    }
+    return result;
+}
+
+// Implementing the response functions needed
+http_response create_ok_response(string data, map<string, string> headers)
+{
+    // we just initialize the HTTP response struct and return it
+    http_response response;
+    response.version = HTTP_1;
+    response.status_code = OK_CODE;
+    response.status_message = OK_MSG;
+    response.headers = headers;
+    response.entity_body = data;
+    return response;
+}
+http_response create_not_found_response(map<string, string> headers)
+{
+    // we just initialize the HTTP response struct and return it
+    http_response response;
+    response.version = HTTP_1;
+    response.status_code = NOT_FOUND_CODE;
+    response.status_message = NOT_FOUND_MSG;
+    response.headers = headers;
+    return response;
+}
+string response_to_string(http_response response)
+{
+    // Create the response in a single string as is defined in the .H file
+    string res;
+    // creating the status line
+    string status_line = response.version + SPACE + response.status_code + SPACE + response.status_message + CARRIAGE_RETURN + LINE_FEED;
+    // Creating the header lines
+    string headers = "";
+    // Iterating through the lines
+    map<string, string>::iterator it;
+    for (it = response.headers.begin(); it != response.headers.end(); it++)
+    {
+        headers += it->first + HEADER_SEPARATOR + it->second + CARRIAGE_RETURN + LINE_FEED;
+    }
+    // Creating the result string
+    // Don't forget the empty line :)
+    res = status_line + headers + EMPTY_LINE + response.entity_body;
+    return res;
+}
+http_response string_to_response(string response_string){
+    // splitting the response string to be line by line
+    vector<string> response_by_line = split_to_lines(response_string);
+    http_response result;
+    // using the request line
+    vector<string> status_line = split_to_words(response_by_line[0], SPACE);
+    result.version = status_line[0];
+    result.status_code = status_line[1];
+    result.status_message = status_line[2];
+    // Obtaining the headers
+    int i = 1;
+    while (response_by_line[i] != EMPTY_LINE)
+    {
+        vector<string> current_header = split_to_words(response_by_line[i], HEADER_SEPARATOR);
+        result.headers[current_header[0]] = current_header[1];
+        i++;
+    }
+    // if there is data keep it
+    i++;
+    if (i == (int)response_by_line.size() - 1)
+    {
+        result.entity_body = response_by_line[i];
     }
     return result;
 }
