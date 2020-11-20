@@ -3,9 +3,11 @@
 #include "parser.h"
 #include "file.h"
 void test_http();
+void test_file();
 int main()
 {
     // test_http();
+    test_file();
     return 0;
 }
 void test_http()
@@ -35,4 +37,10 @@ void test_http()
          << not_found_r;
     cout<< "testing string to response:" <<endl
         << response_to_string(string_to_response(not_found_r));
+}
+void test_file(){
+    string read_file = read_file_bin("test_image.png");
+    cout<<file_exists("test_image.png");
+    cout<<file_exists("test_ige.png");
+    write_file("copy.html",read_file_bin("test.html"));
 }
