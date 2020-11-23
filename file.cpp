@@ -20,7 +20,9 @@ bool file_exists(string file_path)
 {
     ifstream file(file_path);
     string s;
-    return file.good();
+    bool exists = file.good();
+    file.close();
+    return exists;
 }
 
 // Uses ifstream to write to the file
