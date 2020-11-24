@@ -18,7 +18,7 @@
 // chosen a random initial port larger than 1024 to prevent any required privelege constraints
 #define DEFAULT_PORT "2000"
 #define BACKLOG 100 // how many pending connections queue will hold
-
+#define MIN_TIMEOUT 10
 // Functions implemented
 
 // A handler for children processes that just clears zombie processes without blocking.
@@ -33,3 +33,5 @@ void handle_connections(int listen_fd);
 void handle_request(http_request request, int client_fd);
 // handles spaces in url
 string handle_spaces(http_request request);
+// obtains the timeout value and changes it according to number of active connections
+float change_timeout(int current_timeout,int number_connections);
