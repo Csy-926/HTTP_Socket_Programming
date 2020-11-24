@@ -7,3 +7,8 @@ http://www.cplusplus.com/doc/tutorial/files/
 https://stackoverflow.com/questions/17584784/read-a-binary-file-jpg-to-a-string-using-c
 https://stackoverflow.com/questions/12774207/fastest-way-to-check-if-a-file-exist-using-standard-c-c11-c
 https://www.w3schools.com/cpp/cpp_files.asp
+https://fedemengo.github.io/blog/2018/02/SIGCHLD-handler.html
+https://man7.org/linux/man-pages/man3/perror.3.html
+https://www.gnu.org/software/libc/manual/html_node/Flags-for-Sigaction.html
+https://stackoverflow.com/questions/14378957/detecting-a-timed-out-socket-from-a-set-of-sockets
+https://stackoverflow.com/questions/19555121/how-to-get-current-timestamp-in-milliseconds-since-1970-just-the-way-java-gets
