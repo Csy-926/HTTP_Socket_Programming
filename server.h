@@ -18,7 +18,7 @@
 // chosen a random initial port larger than 1024 to prevent any required privelege constraints
 #define DEFAULT_PORT "2000"
 #define BACKLOG 100 // how many pending connections queue will hold
-#define MIN_TIMEOUT 10
+
 // Functions implemented
 
 // A handler for children processes that just clears zombie processes without blocking.

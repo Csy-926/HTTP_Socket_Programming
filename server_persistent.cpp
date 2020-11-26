@@ -142,7 +142,7 @@ void reap_zombies()
     }
 }
 
-// Non-persistent at first then would be updated to be persistent by use of select()
+// No timeout at first then would be updated to include timeout by use of select()
 void handle_connections(int listen_fd)
 {
     // The fd of the client trying to connect
@@ -172,6 +172,7 @@ void handle_connections(int listen_fd)
         }
         else
         {
+            close(client_fd);
             cout << "server supports only IPV4" << endl;
             continue;
         }
