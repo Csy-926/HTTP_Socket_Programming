@@ -4,6 +4,8 @@ CC = g++
 # The compilation method used
 CFLAGS = -c -Wall
 
+all: my_client my_server_non my_server_p
+
 my_client: parser.o http.o file.o client.o
 	$(CC) parser.o http.o file.o client.o -o my_client
 

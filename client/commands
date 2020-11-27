@@ -1,0 +1,6 @@
+client_post /first_post.txt localhost
+client_get /Resources/Assient1.pdf localhost
+client_get /Resources/test localhost
+client_post /second_post.txt localhost
+client_get / localhost
+client_get /Makefile localhost
